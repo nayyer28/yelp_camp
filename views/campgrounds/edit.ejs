@@ -2,23 +2,23 @@
 <div class="row">
   <h1 class="text-center">Edit Campground</h1>
   <div class="col-6 offset-3">
-    <form class="mb-4" action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
+    <form class="mb-4 validated-form" action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" novalidate>
       <div class="form-group mb-2">
         <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" name="campground[title]" value="<%=campground.title%>">
+        <input type="text" class="form-control" id="title" name="campground[title]" value="<%=campground.title%>" required>
       </div>
       <div class="form-group mb-2">
         <label for="location">Location</label>
-        <input type="text" class="form-control" id="location" name="campground[location]" value="<%=campground.location%>">
+        <input type="text" class="form-control" id="lrequiredocation" name="campground[location]" value="<%=campground.location%>" required>
       </div>
       <div class="form-group mb-2">
         <label for="image">Image Url</label>
-        <input type="text" class="form-control" id="image" name="campground[image]" value="<%=campground.image%>">
+        <input type="text" class="form-control" id="image" name="campground[image]" value="<%=campground.image%>" required>
       </div>
       <img class="img-fluid mt-2 mb-2" src="<%=campground.image%>" alt="Campground Image">
       <div class="form-group mb-2">
         <label for="description">Description</label>
-        <textarea class="form-control" id="description" name="campground[description]"><%=campground.description%></textarea>
+        <textarea class="form-control" id="description" name="campground[description]" required><%=campground.description%></textarea>
       </div>
 
       <label for="basic-url">Campground Price</label>

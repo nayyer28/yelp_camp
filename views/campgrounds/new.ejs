@@ -2,32 +2,50 @@
 <div class="row">
   <h1 class="text-center">New Campground</h1>
   <div class="col-6 offset-3">
-    <form class="mb-4" action="/campgrounds" method="POST">
+    <form class="mb-4 validated-form" action="/campgrounds" method="POST" novalidate>
       <div class="form-group mb-2">
         <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" name="campground[title]">
+        <input type="text" class="form-control" id="title" name="campground[title]" required>
+        <div class="valid-feedback">
+          There you go!
+        </div>
       </div>
       <div class="form-group mb-2">
         <label for="location">Location</label>
-        <input type="text" class="form-control" id="location" name="campground[location]">
+        <input type="text" class="form-control" id="location" name="campground[location]" required>
+        <div class="valid-feedback">
+          Looks fine!
+        </div>
       </div>
       <div class="form-group mb-2">
         <label for="image">Image Url</label>
-        <input type="text" class="form-control" id="image" name="campground[image]">
+        <input type="text" class="form-control" id="image" name="campground[image]" required>
+        <div class="valid-feedback">
+          Needs an image url
+        </div>
       </div>
+
 
       <div class="form-group mb-2">
         <label for="description">Description</label>
-        <textarea class="form-control" id="description" name="campground[description]"></textarea>
+        <textarea class="form-control" id="description" name="campground[description]" required></textarea>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
       </div>
+
 
       <label for="basic-url">Campground Price</label>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="price-label">$</span>
         </div>
-        <input type="text" class="form-control" id="price" name="campground[price]" placeholder="0.0" aria-describedby="price-label">
+        <input type="text" class="form-control" id="price" name="campground[price]" placeholder="0.0" aria-describedby="price-label" required>
+        <div class="valid-feedback">
+          You don't want this to be free!
+        </div>
       </div>
+
       <div class="mb-3">
         <button class="btn btn-success mt-4">Add Campground</button>
       </div>
