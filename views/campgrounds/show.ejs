@@ -1,25 +1,59 @@
 <%layout('./layouts/boilerplate')%>
-<div class="row">
-  <div class="col-6 offset-3">
-    <div class="card mb-3" style="width: 18rem;">
-      <img class="card-img-top img-fluid" src="<%=campground.image%>" alt="Campground Image">
-      <div class="card-body">
-        <h5 class="card-title"><%=campground.title%></h5>
-        <p class="card-text"><%= campground.description%></p>
+<div class="container mb-3">
+  <div class="row justify-content-center">
+    <div class="col-sm">
+      <div class="card mb-3">
+        <img class="card-img-top img-fluid" src="<%=campground.image%>" alt="Campground Image">
+        <div class="card-body">
+          <h5 class="card-title"><%=campground.title%></h5>
+          <p class="card-text"><%= campground.description%></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-muted"><%= campground.location%></li>
+          <li class="list-group-item">$<%= campground.price%>/night</li>
+        </ul>
+        <div class="card-body d-flex justify-content-between"">
+          <a class=" btn btn-info card-link" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+          <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+        <div class="card-footer text-muted">
+          <%=Math.floor(Math.random()*10 +1)%> days ago
+        </div>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted"><%= campground.location%></li>
-        <li class="list-group-item">$<%= campground.price%>/night</li>
-      </ul>
-      <div class="card-body d-flex justify-content-between"">
-        <a class=" btn btn-info card-link" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
-        <form class="d-inline" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
-          <button class="btn btn-danger">Delete</button>
+    </div>
+    <div class="col-sm">
+      <div class="mb-3">
+        <h3>Leave a review</h3>
+        <form action="/campgrounds/<%=campground._id%>/reviews" class="mb-3 validated-form" method="POST" novalidate>
+          <div class="mb-3">
+            <label for="rating" class="form-label">Rating</label>
+            <input type="range" min="1" max="5" id="rating" class="form-range" name="review[rating]">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="reviewBody">Review</label>
+            <textarea class="form-control" name="review[reviewBody]" id="reviewBody" cols="1" rows="5" required></textarea>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <button class="btn btn-success">Post review</button>
         </form>
       </div>
-      <div class="card-footer text-muted">
-        <%=Math.floor(Math.random()*10 +1)%> days ago
-      </div>
+      <div class="mb-3">
+        <%for (let review of campground.reviews) { %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Rating: <%=review.rating%></h5>
+            <p class="card-text"><b>Review</b>: <%=review.reviewBody%></p>
+            <form action="/campgrounds/<%=campground._id%>/reviews/<%=review.id%>?_method=DELETE" method="POST">
+              <button class="btn btn-sm btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+        <%}%>
+    </div>
     </div>
   </div>
 </div>
